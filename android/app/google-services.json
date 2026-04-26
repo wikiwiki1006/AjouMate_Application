@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "340640648104",
+    "project_id": "ajouapp-7f8ac",
+    "storage_bucket": "ajouapp-7f8ac.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340640648104:android:355e41fc69c9673d046b9d",
+        "android_client_info": {
+          "package_name": "com.ajou.universityapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdVLX07hsJp6QmG84VReQKoymr9z0WRko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
