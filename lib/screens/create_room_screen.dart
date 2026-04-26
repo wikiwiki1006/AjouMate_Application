@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import '../services/supabase_service.dart';
+import '../services/geocoding_service.dart';
 import '../models/taxi_room.dart';
 
 class CreateRoomScreen extends StatefulWidget {
@@ -29,18 +30,22 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
 
   bool get _isMapSupported => defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
 
-  // DB에서 장소 검색 로직
-  Future<void> _searchLocationFromDB(bool isStart) async {
+  // 장소 검색 로직 (DB + API 통합)
+  Future<void> _searchLocation(bool isStart) async {
     final query = isStart ? _startNameController.text : _endNameController.text;
     if (query.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('검색어를 입력해주세요.')));
       return;
     }
 
-    final results = await _supabaseService.searchLocations(query);
+    // 1. API 검색 (Geocoding)
+    final apiResults = await GeocodingService.searchPlaces(query);
     
-    if (results.isEmpty) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('등록된 장소가 없습니다. 직접 지도를 이동해 찍어주세요.')));
+    // 2. DB 검색 (기존 로직 유지)
+    final dbResults = await _supabaseService.searchLocations(query);
+    
+    if (apiResults.isEmpty && dbResults.isEmpty) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('검색 결과가 없습니다. 직접 지도를 이동해 찍어주세요.')));
       return;
     }
 
@@ -51,27 +56,45 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
         builder: (context) => Container(
           padding: const EdgeInsets.all(20),
-          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.6),
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.7),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('장소 선택 (DB)', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(isStart ? '출발지 검색 결과' : '목적지 검색 결과', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 12),
               Expanded(
-                child: ListView.builder(
-                  itemCount: results.length,
-                  itemBuilder: (context, index) {
-                    final loc = results[index];
-                    return ListTile(
-                      leading: const Icon(Icons.place, color: Colors.blue),
-                      title: Text(loc['name']),
-                      onTap: () {
-                        Navigator.pop(context);
-                        final latLng = NLatLng(loc['lat'], loc['lng']);
-                        _moveToLocation(isStart, latLng, loc['name']);
-                      },
-                    );
-                  },
+                child: ListView(
+                  children: [
+                    if (dbResults.isNotEmpty) ...[
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text('교내 주요 장소', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      ),
+                      ...dbResults.map((loc) => ListTile(
+                        leading: const Icon(Icons.school, color: Colors.blue),
+                        title: Text(loc['name']),
+                        onTap: () {
+                          Navigator.pop(context);
+                          _moveToLocation(isStart, NLatLng(loc['lat'], loc['lng']), loc['name']);
+                        },
+                      )),
+                    ],
+                    if (apiResults.isNotEmpty) ...[
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text('지도 검색 결과', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                      ),
+                      ...apiResults.map((loc) => ListTile(
+                        leading: const Icon(Icons.place, color: Colors.redAccent),
+                        title: Text(loc['name']),
+                        subtitle: Text(loc['roadAddress'] ?? loc['jibunAddress'] ?? ''),
+                        onTap: () {
+                          Navigator.pop(context);
+                          _moveToLocation(isStart, loc['latLng'], loc['name']);
+                        },
+                      )),
+                    ],
+                  ],
                 ),
               ),
             ],
@@ -87,7 +110,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
       if (isStart) {
         _startLatLng = latLng;
         _startNameController.text = name;
-        _activeMode = 'end';
+        if (_endLatLng == null) _activeMode = 'end';
       } else {
         _endLatLng = latLng;
         _endNameController.text = name;
@@ -107,21 +130,28 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
     }
   }
 
-  void _confirmLocation() {
+  // 지도를 직접 움직여서 확정할 때 주소를 자동으로 가져옴
+  Future<void> _confirmLocation() async {
     if (_mapController == null) return;
     final center = _mapController!.nowCameraPosition.target;
+    
+    // 역지오코딩으로 주소 가져오기
+    final address = await GeocodingService.reverseGeocode(center.latitude, center.longitude);
+    final displayName = address ?? "선택된 위치";
+
     setState(() {
       if (_activeMode == 'start') {
         _startLatLng = center;
-        if (_startNameController.text.isEmpty) _startNameController.text = "선택된 출발지";
-        _activeMode = 'end';
+        _startNameController.text = displayName;
+        if (_endLatLng == null) _activeMode = 'end';
       } else {
         _endLatLng = center;
-        if (_endNameController.text.isEmpty) _endNameController.text = "선택된 목적지";
+        _endNameController.text = displayName;
       }
     });
     _updateMarkers();
   }
+
 
   void _createRoom() async {
     if (_startLatLng == null || _endLatLng == null || _startNameController.text.isEmpty || _endNameController.text.isEmpty) {
@@ -149,7 +179,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('장소 선택 (API 미사용)', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        title: const Text('방 만들기', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white, foregroundColor: Colors.black, elevation: 0,
       ),
       body: Column(
@@ -202,9 +232,9 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
       decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)]),
       child: Column(
         children: [
-          _buildSearchField(_startNameController, '출발지 검색 또는 입력', const Color(0xFF1B64DA), _activeMode == 'start', () => setState(() => _activeMode = 'start'), () => _searchLocationFromDB(true)),
+          _buildSearchField(_startNameController, '출발지 검색 또는 입력', const Color(0xFF1B64DA), _activeMode == 'start', () => setState(() => _activeMode = 'start'), () => _searchLocation(true)),
           const SizedBox(height: 10),
-          _buildSearchField(_endNameController, '목적지 검색 또는 입력', Colors.red, _activeMode == 'end', () => setState(() => _activeMode = 'end'), () => _searchLocationFromDB(false)),
+          _buildSearchField(_endNameController, '목적지 검색 또는 입력', Colors.red, _activeMode == 'end', () => setState(() => _activeMode = 'end'), () => _searchLocation(false)),
         ],
       ),
     );

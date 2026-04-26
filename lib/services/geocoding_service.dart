@@ -70,6 +70,7 @@ class GeocodingService {
         if (data['addresses'] != null) {
           return (data['addresses'] as List).map((addr) {
             return {
+              'name': addr['roadAddress'] ?? addr['jibunAddress'],
               'roadAddress': addr['roadAddress'],
               'jibunAddress': addr['jibunAddress'],
               'latLng': NLatLng(double.parse(addr['y']), double.parse(addr['x'])),
@@ -81,5 +82,12 @@ class GeocodingService {
       print("Geocoding Error: $e");
     }
     return [];
+  }
+
+  // 3. 장소 검색 (POI 검색 - Naver Search API 이용 권장이나, 여기서는 Geocoding 결과를 우선 활용)
+  // 네이버 맵 API의 지오코딩은 '아주대학교' 같은 명칭도 어느 정도 검색이 가능합니다.
+  static Future<List<Map<String, dynamic>>> searchPlaces(String query) async {
+    // Geocoding API를 사용하여 주소뿐만 아니라 주요 랜드마크 검색 시도
+    return await geocode(query);
   }
 }

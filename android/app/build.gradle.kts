@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId = "com.ajou.universityapp"
-        minSdk = 21
+        minSdk = flutter.minSdkVersion
         targetSdk = 36
         versionCode = flutter.versionCode
         versionName = flutter.versionName
