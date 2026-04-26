@@ -3,8 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NMFClientId</key>
-	<string>edr6uumejb</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>fgdysmkced</string>	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>합승 장소 확인을 위해 현재 위치 권한이 필요합니다.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>

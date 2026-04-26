@@ -16,19 +16,13 @@ void main() async {
     debug: kDebugMode,
   );
 
-  // 모바일 환경에서만 네이버 지도 초기화 (순차 실행으로 변경하여 안정성 확보)
+  // 모바일 환경에서만 네이버 지도 초기화
   if (defaultTargetPlatform == TargetPlatform.android ||
       defaultTargetPlatform == TargetPlatform.iOS) {
-    try {
-      debugPrint("네이버 지도 초기화 시작...");
-      await NaverMapSdk.instance.initialize(
-        clientId: 'edr6uumejb',
-        onAuthFailed: (ex) => debugPrint("네이버 지도 인증 실패: $ex"),
-      );
-      debugPrint("네이버 지도 초기화 완료");
-    } catch (e) {
-      debugPrint("네이버 지도 초기화 중 오류 발생: $e");
-    }
+    debugPrint("네이버 지도 초기화 시작 (Native에서 인증 처리됨)");
+    await NaverMapSdk.instance.initialize(
+      onAuthFailed: (ex) => debugPrint("네이버 지도 인증 실패 상세: $ex"),
+    );
   }
 
   runApp(const UniversityApp());

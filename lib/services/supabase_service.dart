@@ -18,6 +18,20 @@ class SupabaseService {
 
   String? get currentUserId => _client.auth.currentUser?.id;
 
+  // 장소 이름으로 검색 (DB 기반)
+  Future<List<Map<String, dynamic>>> searchLocations(String query) async {
+    try {
+      final response = await _client
+          .from('locations')
+          .select()
+          .ilike('name', '%$query%'); // 대소문자 구분 없이 포함된 단어 검색
+      return List<Map<String, dynamic>>.from(response);
+    } catch (e) {
+      print("장소 검색 오류: $e");
+      return [];
+    }
+  }
+
   // 택시 방 목록 가져오기 (실시간 스트림, 현재 시간 이후의 방만 표시)
   Stream<List<TaxiRoom>> getTaxiRooms() {
     return _client
