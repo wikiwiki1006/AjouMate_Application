@@ -1,0 +1,15 @@
+-- Supabase SQL Editor에 복사해서 실행하세요 --
+
+-- 1. frequent_locations 테이블에 보안 설정(RLS) 활성화
+ALTER TABLE public.frequent_locations ENABLE ROW LEVEL SECURITY;
+
+-- 2. 누구나 데이터를 읽을 수 있도록 허용하는 정책(Policy) 생성
+-- 기존 정책이 있다면 삭제하고 새로 만듭니다.
+DROP POLICY IF EXISTS "Allow public read access" ON public.frequent_locations;
+
+CREATE POLICY "Allow public read access"
+ON public.frequent_locations FOR SELECT
+TO public
+USING (true);
+
+-- 3. 설정 확인 (성공 메시지가 뜨면 완료입니다)

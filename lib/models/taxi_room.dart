@@ -12,6 +12,7 @@ class TaxiRoom {
   final int maxPeople;
   final List<String> participants;
   final DateTime createdAt;
+  final String? chatUrl; // 카카오톡 오픈채팅 링크 추가
 
   TaxiRoom({
     required this.id,
@@ -27,6 +28,7 @@ class TaxiRoom {
     required this.maxPeople,
     required this.participants,
     required this.createdAt,
+    this.chatUrl,
   });
 
   factory TaxiRoom.fromMap(Map<String, dynamic> data) {
@@ -44,6 +46,7 @@ class TaxiRoom {
       maxPeople: data['max_people'] ?? 4,
       participants: List<String>.from(data['participants'] ?? []),
       createdAt: DateTime.parse(data['created_at']),
+      chatUrl: data['chat_url'],
     );
   }
 
@@ -60,6 +63,7 @@ class TaxiRoom {
       'departure_time': departureTime.toIso8601String(),
       'max_people': maxPeople,
       'participants': participants,
+      'chat_url': chatUrl,
     };
   }
 }

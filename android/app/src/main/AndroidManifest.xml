@@ -6,7 +6,7 @@
     <application
         android:label="university_app"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         
         <!-- 네이버 지도 Client ID 적용 -->
         <meta-data

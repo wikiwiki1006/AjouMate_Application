@@ -40,13 +40,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications_none, color: Colors.white)),
-          const SizedBox(width: 8),
-        ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -85,6 +81,18 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 16),
+            const Center(
+              child: Text(
+                'v0.0.0 | wikiwiki041006@gmail.com',
+                style: TextStyle(
+                  color: Color(0xFF8B95A1),
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.2,
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -96,7 +104,6 @@ class HomeScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(32),
-        // 테두리를 더 두껍게 수정 (width: 1.5 -> 3.0)
         border: Border.all(color: primaryBlue.withAlpha(80), width: 3.0),
         boxShadow: [
           BoxShadow(
@@ -114,10 +121,9 @@ class HomeScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, // 아이콘을 중앙에 배치하기 위해 변경
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Spacer(),
-                // 아이콘 중앙 배치
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -128,7 +134,6 @@ class HomeScreen extends StatelessWidget {
                   child: Icon(icon, color: color, size: 36),
                 ),
                 const Spacer(),
-                // 제목 및 부제 하단 배치
                 Column(
                   children: [
                     Text(

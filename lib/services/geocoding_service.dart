@@ -52,10 +52,11 @@ class GeocodingService {
     return null;
   }
 
-  // 2. 지오코딩 (주소 -> 좌표)
-  static Future<List<Map<String, dynamic>>> geocode(String address) async {
+  // 2. 지오코딩 (통합 검색용)
+  // NCP Maps 서비스의 유일한 검색 수단입니다.
+  static Future<List<Map<String, dynamic>>> geocode(String query) async {
     final url = Uri.https('maps.apigw.ntruss.com', '/map-geocode/v2/geocode', {
-      'query': address,
+      'query': query,
     });
 
     try {
@@ -69,6 +70,7 @@ class GeocodingService {
         final data = json.decode(response.body);
         if (data['addresses'] != null) {
           return (data['addresses'] as List).map((addr) {
+            // 지오코딩 결과에서 '주소'와 '랜드마크명'을 적절히 추출
             return {
               'name': addr['roadAddress'] ?? addr['jibunAddress'],
               'roadAddress': addr['roadAddress'],
@@ -84,10 +86,8 @@ class GeocodingService {
     return [];
   }
 
-  // 3. 장소 검색 (POI 검색 - Naver Search API 이용 권장이나, 여기서는 Geocoding 결과를 우선 활용)
-  // 네이버 맵 API의 지오코딩은 '아주대학교' 같은 명칭도 어느 정도 검색이 가능합니다.
+  // searchPlaces 메서드는 NCP Maps 서비스 사양에 맞춰 geocode로 대체
   static Future<List<Map<String, dynamic>>> searchPlaces(String query) async {
-    // Geocoding API를 사용하여 주소뿐만 아니라 주요 랜드마크 검색 시도
     return await geocode(query);
   }
 }
