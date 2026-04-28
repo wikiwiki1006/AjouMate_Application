@@ -1,5 +1,11 @@
 [
   {
+    "title": "[학부] 전공(복수,부,마이크로,연계,심화전공) 신청 및 취소 기간 안내 (5.1.~5.29.)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367768&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": true
+  },
+  {
     "title": "[학부] 2026-1학기 미등록자 구제등록 안내(4.24. ~ 4.30.)",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367249&article.offset=0&articleLimit=10",
     "date": "2026-04-17",
@@ -48,297 +54,237 @@
     "is_pinned": false
   },
   {
+    "title": "🩵U-Chance FAIR🩵 2026학년도 전공·진로 박람회 사전 등록 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367784&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[재공지]2026 IT 진로 Talk Concert [구인배수 0.4 대 1.2] 숫자가 말해주는 취업 생존전략과 일본 커리어 로드맵 참여신청안내(~04.29까지)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367783&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[데이터보안]2026 제5회 CO-Week Academy 참가 신청 안내(~5/11 13:00)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367782&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "😎내일 10시부터 시작😎[교육혁신팀] 🩵U-Chance FAIR 🩵: 2026 전공·진로 박람회 개최 (4/29~30)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367781&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[미래자동차]2026 제5회 CO-Week Academy 참가 신청 안내(~5/11 13:00)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367780&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[다산학부대학] <예술의 쓸모> 박재연 교수님 특강 (4/29 16시 30분 연암관 대강당)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367772&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[총무팀] 일신관 남측 가설주차장 주차면 추가 조성 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367767&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "대학필수『아주인을 위한 마중물』4월 29일(수) 수업 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367764&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[IT융합대학원]2026학년도 후기 석사과정 신입생 모집 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367763&article.offset=0&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[총무팀] 체육관 APP_BLUE 5월 GX프로그램 신규 등록 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367760&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "🎉[교육혁신팀] 2026학년도 1학기 비교과 마일리지 장학 결과 발표🎉",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367757&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[RISE] 2026 아주대학교와 함께하는 '수원시 마을 SDGs 모니터링단 역량강화 교육' 참여자 모집",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367749&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "🚘[D-6] 🚘[미래자동차]2026학년도 미래자동차 연계전공 설명회 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367748&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "아주대학교 학부 재학생 생성형 AI 구독권 배포",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367743&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[중앙도서관] 자료실 및 법학도서관 휴관안내(5/1)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367742&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[성평등상담소] 단기 면학장학생 모집(행사 진행 보조 및 정리)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367738&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[다산학부대학] ACAT 시험 대학원생 감독자 모집 안내(조기마감)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367731&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[교통·모빌리티대학원] 2026학년도 후기 석사과정 신입생 모집 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367730&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[중앙도서관]라이브러리 라운지 오픈 기념식에 초대합니다.",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367727&article.offset=10&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[도구박물관×글로벌교양학부] 전통문화체험『세계로 부는 바람』참여자 모집 (~5/19)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367726&article.offset=20&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[학부/학사과정] (26.04.28.) 2026-하계 계절학기 국내대학 학점교류 신청 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367725&article.offset=20&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "[글로벌교양학부] 제106회 TOPIK 대비 특강(~5/11(월) 18시까지)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367718&article.offset=20&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
+    "title": "(행사마감) [학생상담소] 바로 오늘 11시! 신학생회관 광장에서 선물 뿌립니다!🤩🤩",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367717&article.offset=20&articleLimit=10",
+    "date": "2026-04-28",
+    "is_pinned": false
+  },
+  {
     "title": "[대학원]💚U-Chance Fair💚 대학원 부스 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367714&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367714&article.offset=20&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "[BK21대학원혁신] BK21사업 고도화를 위한 외부전문가 초청 전략 심포지엄 개최",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367713&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367713&article.offset=20&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "다양한 전공? 다 나의 전공! 💟 전설의 다전공 설명회 at U-Chance Fair 💟",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367710&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367710&article.offset=20&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "[교육혁신팀] 🩵U-Chance FAIR 🩵 2026학년도 전공·진로 박람회 사전등록 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367706&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367706&article.offset=20&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "[미래자동차]율곡관 지하 혁신공유라운지 전체 사용불가 안내(5/7(목) 16시~)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367701&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367701&article.offset=20&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "The Ajou Universe Vol. 45",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367690&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367690&article.offset=20&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "[법학도서관] 2026년 법률DB 이용 교육(온라인) 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367685&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367685&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "자, 이제 게임을 시작하지🤡 \"보드게임 집단상담\" 시작해볼까?",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367683&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367683&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "[창업지원팀] 2026 실험실 창업지원(AN-Lab) 프로그램 참가팀 모집 공고(~5/1까지)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367682&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367682&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "[일자리+센터][캠리] BGF리테일 채용상담회(4/29)_참여 시 서류 가점(재공지)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367670&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367670&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "💻AI실력자는 바로 AI부트캠프 고급과정으로!😎😎",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367666&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367666&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "💻AI부트캠프참여로 AI역량도강화하고 장학금도 받자!😝💰",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367665&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367665&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "[학부/학사과정] (26.04.27.) 2026-하계 계절학기 국내대학 학점교류 신청 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367663&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367663&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "5월 아주대 체육관(실내 경기장) 행사 일정 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367661&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367661&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "[학습법] 2026-1학기 학습법 컨설팅 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367655&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367655&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
     "is_pinned": false
   },
   {
     "title": "[의료인공지능] 2026 AIMED & 인실리코젠 하계 인코인턴십(20기) 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367647&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367647&article.offset=30&articleLimit=10",
     "date": "2026-04-27",
-    "is_pinned": false
-  },
-  {
-    "title": "2026학년도 1학기 화학 1대3 튜터링 Tutor 추가모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367646&article.offset=10&articleLimit=10",
-    "date": "2026-04-27",
-    "is_pinned": false
-  },
-  {
-    "title": "[교외장학] 2026년도 KICS 한국통신학회 장학금 지원 대상자 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367640&article.offset=10&articleLimit=10",
-    "date": "2026-04-27",
-    "is_pinned": false
-  },
-  {
-    "title": "[학생상담소] 찾아가는 상담실 - (내일!) 오기만 해도 선물 Dream🍀",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367630&article.offset=10&articleLimit=10",
-    "date": "2026-04-27",
-    "is_pinned": false
-  },
-  {
-    "title": "[데이터보안] 2026-하계 한양대학교 ERICA 데이터보안ㆍ활용융합 학점교류 신청 안내(~5.6까지)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367629&article.offset=20&articleLimit=10",
-    "date": "2026-04-27",
-    "is_pinned": false
-  },
-  {
-    "title": "다양한 전공? 다 나의 전공! 💟 전설의 다전공 설명회 at U-Chance Fair 💟",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367618&article.offset=20&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[RISE] 2026 아주대학교와 함께하는 '수원시 마을 SDGs 모니터링단 역량강화 교육' 참여자 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367617&article.offset=20&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "자, 이제 게임을 시작하지🤡 \"보드게임 집단상담\" 시작해볼까?",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367608&article.offset=20&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[창업지원단] 우승시 최대 10억원! '모두의 창업' 설명회/상담회 참가 신청 안내(~4/26)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367606&article.offset=20&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[재공지] 2026 AiRISE 창업아이디어 경진대회 일정안내 및 예비신청자 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367596&article.offset=20&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[경기환경에너지진흥원] 2026년 기후미래직업 청년일자리 전문교육 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367595&article.offset=20&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[재공지]2026 IT 진로 Talk Concert [구인배수 0.4 대 1.2] 숫자가 말해주는 취업 생존전략과 일본 커리어 로드맵 참여신청안내(~04.27까지)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367593&article.offset=20&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "2026 수원시 청년 역량강화 기회지원 사업 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367579&article.offset=20&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[사회봉사센터]2026 사회공헌 실천사업 '사랑의 과일도시락 나눔' 봉사자 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367576&article.offset=20&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[일자리+센터] 4월 4주차 이공계인력중개센터 채용 정보",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367567&article.offset=30&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[🔔재공지][RISE] 2026 제23회 현장실습 수기•영상 공모전 참여 안내(4/27(월)~5/10(일))",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367566&article.offset=30&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[창업지원팀]「2026 학생창업유망팀 300+」모집 마감 연장(~5/6(수))",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367562&article.offset=30&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[BK21대학원혁신] 정출연, 미국 대학원 등으로의 진로 탐색 특강 「A-Career Insight Talk(2026.4.27.)」(KIRI, 최우석 박사)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367556&article.offset=30&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "교내 냉난방기 현황조사 실시 안내(4차)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367554&article.offset=30&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[재공지][국가근로] 2026학년도 1학기 한국장학재단 국가근로장학금 3차 신청 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367546&article.offset=30&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[RISE] 2026 아주대학교와 함께하는 '수원시 마을 SDGs 모니터링단 역량강화 교육' 참여자 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367544&article.offset=30&articleLimit=10",
-    "date": "2026-04-24",
-    "is_pinned": false
-  },
-  {
-    "title": "[미래자동차]대림대 2026-하계 미래자동차컨소시엄 협력교육 신청 안내(~5/11까지)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367538&article.offset=30&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "다양한 전공? 다 나의 전공! 💟 전설의 다전공 설명회 at U-Chance Fair 💟",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367536&article.offset=30&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "[일자리+센터] 노동절 전야 토크콘서트 <일과 삶을 이야기하다> 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367519&article.offset=30&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "[일자리+센터] SSAFY(삼성청년 SW • AI 아카데미) 16기 모집 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367516&article.offset=40&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "[재공지] [국제교류팀] [하계 2차] 2026 해외단기파견 프로그램 참가자 모집 (4/20~4/24)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367503&article.offset=40&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "2026 대학혁신지원사업 총괄협의회 서포터즈 모집 공고 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367492&article.offset=40&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "[교육혁신팀] 💜U-Chance Fair 참여 후기 공모전 사전 공지💜",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367490&article.offset=40&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "[재공지] [학자금대출] 2026-1 최종 구제등록 기간 한국장학재단 학자금대출 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367475&article.offset=40&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "[교육혁신팀] 🩵U-Chance FAIR 🩵 2026학년도 전공·진로 박람회 개최 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367474&article.offset=40&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "[학습법] 2026-1학기 온라인 학습법 특강 안내(신규 콘텐츠 업로드)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367473&article.offset=40&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "❗ [재공지][국제교류팀] 2026 아주대학교 파란사다리 모집 ❗",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367468&article.offset=40&articleLimit=10",
-    "date": "2026-04-23",
-    "is_pinned": false
-  },
-  {
-    "title": "[RISE] 2026 아주대학교와 함께하는 '수원시 마을 SDGs 모니터링단 역량강화 교육' 참여자 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367459&article.offset=40&articleLimit=10",
-    "date": "2026-04-22",
-    "is_pinned": false
-  },
-  {
-    "title": "(긴급공지)[정보시스템팀] 본교 IT 서비스 연동 통합인증(SSO) 긴급 작업 안내(4/22, 수 18:00~20:00)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=367448&article.offset=40&articleLimit=10",
-    "date": "2026-04-22",
     "is_pinned": false
   }
 ]
