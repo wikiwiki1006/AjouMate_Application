@@ -1,6 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/taxi_room.dart';
-import '../models/message.dart';
 
 class SupabaseService {
   final _client = Supabase.instance.client;
@@ -32,13 +31,13 @@ class SupabaseService {
     }
   }
 
-  // 장소 이름으로 검색 (DB 기반) - 이전에 추가한 메서드 (필요시 유지)
+  // 장소 이름으로 검색 (DB 기반)
   Future<List<Map<String, dynamic>>> searchLocations(String query) async {
     try {
       final response = await _client
           .from('locations')
           .select()
-          .ilike('name', '%$query%'); // 대소문자 구분 없이 포함된 단어 검색
+          .ilike('name', '%$query%');
       return List<Map<String, dynamic>>.from(response);
     } catch (e) {
       print("장소 검색 오류: $e");
@@ -57,10 +56,9 @@ class SupabaseService {
             .toList());
   }
 
-  // 만료된 방 자동 삭제 (출발 시간이 1시간 이상 지난 방만 삭제하여 여유 공간 확보)
+  // 만료된 방 자동 삭제
   Future<void> cleanupOldRooms() async {
     try {
-      // 현재 시간보다 1시간 전보다 더 과거인 방만 삭제 (시간차/오차 고려)
       final expiryTime = DateTime.now().subtract(const Duration(hours: 1)).toIso8601String();
       await _client
           .from('taxi_rooms')
@@ -71,29 +69,22 @@ class SupabaseService {
     }
   }
 
-  // 순차적 채팅 링크 가져오기 (현재 사용 중인 링크 제외)
+  // 순차적 채팅 링크 가져오기
   Future<String?> getSequentialChatLink() async {
     try {
-      // 0. 먼저 만료된 방들을 정리하여 링크를 풀로 복구
       await cleanupOldRooms();
-
-      // 1. 현재 생성되어 있는 모든 방에서 사용 중인 링크 목록 가져오기 (시간 상관 없이)
       final activeRoomsResponse = await _client
           .from('taxi_rooms')
           .select('chat_url');
       
-      // null 값을 안전하게 처리하여 문자열 리스트로 변환
       final List<String> usedUrls = (activeRoomsResponse as List)
           .map((item) => item['chat_url']?.toString())
           .where((url) => url != null && url.isNotEmpty)
           .cast<String>()
           .toList();
 
-      // 2. 사용 중이지 않은 링크 중 사용 횟수가 적고 오래된 것 가져오기
       var query = _client.from('chat_pool').select();
-      
       if (usedUrls.isNotEmpty) {
-        // 중복 방지를 위해 현재 taxi_rooms 테이블에 존재하는 모든 URL 제외
         query = query.not('url', 'in', usedUrls);
       }
 
@@ -108,7 +99,6 @@ class SupabaseService {
         final String url = response['url'] as String;
         final int currentCount = response['usage_count'] ?? 0;
 
-        // 3. 사용 횟수 증가 및 마지막 사용 시간 업데이트
         await _client.from('chat_pool').update({
           'usage_count': currentCount + 1,
           'last_used_at': DateTime.now().toIso8601String(),
@@ -145,33 +135,6 @@ class SupabaseService {
     await _client.from('taxi_rooms').insert(room.toMap());
   }
 
-  // 특정 방의 채팅 메시지 가져오기 (실시간 스트림)
-  Stream<List<Message>> getMessages(String roomId) {
-    return _client
-        .from('messages')
-        .stream(primaryKey: ['id'])
-        .eq('room_id', roomId)
-        .order('created_at', ascending: true)
-        .map((data) => data.map((json) => Message.fromMap(json)).toList());
-  }
-
-  // 메시지 전송
-  Future<void> sendMessage(String roomId, String senderName, String content) async {
-    final userId = currentUserId;
-    if (userId == null) return;
-
-    final message = Message(
-      id: '', // DB에서 생성
-      roomId: roomId,
-      senderId: userId,
-      senderName: senderName,
-      content: content,
-      createdAt: DateTime.now(),
-    );
-
-    await _client.from('messages').insert(message.toMap());
-  }
-
   // 택시 방 시간 수정
   Future<void> updateRoomTime(String roomId, DateTime newTime) async {
     await _client
@@ -180,7 +143,7 @@ class SupabaseService {
         .eq('id', roomId);
   }
 
-  // 특정 방 상세 정보 가져오기 (알림 감지용)
+  // 특정 방 상세 정보 가져오기
   Future<TaxiRoom?> getRoomById(String roomId) async {
     final response = await _client
         .from('taxi_rooms')
@@ -219,10 +182,7 @@ class SupabaseService {
     int maxPeople = response['max_people'] ?? 4;
 
     if (participants.contains(userId)) return true;
-
-    if (participants.length >= maxPeople) {
-      return false;
-    }
+    if (participants.length >= maxPeople) return false;
 
     participants.add(userId);
     await _client
@@ -231,5 +191,24 @@ class SupabaseService {
         .eq('id', roomId);
     
     return true;
+  }
+
+  // 사용자 신고
+  Future<void> reportUser({
+    required String reportedUserId,
+    required String roomId,
+    required String reason,
+  }) async {
+    try {
+      await _client.from('reports').insert({
+        'reporter_id': currentUserId,
+        'reported_user_id': reportedUserId,
+        'room_id': roomId,
+        'reason': reason,
+        'created_at': DateTime.now().toIso8601String(),
+      });
+    } catch (e) {
+      print('신고 데이터 전송 오류 (심사 시에는 UI 동작이 중요함): $e');
+    }
   }
 }

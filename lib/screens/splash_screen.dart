@@ -63,15 +63,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 10),
-            Text(
-              'Ajou University Companion',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
-                letterSpacing: 2.0,
-              ),
-            ),
           ],
         ),
       ),

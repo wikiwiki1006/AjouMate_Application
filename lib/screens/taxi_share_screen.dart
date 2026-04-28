@@ -25,12 +25,84 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
   DateTime? _filterDate;
   StreamSubscription? _participantsSubscription;
   Map<String, int> _lastParticipantCounts = {};
+  List<String> _blockedUserIds = [];
 
   @override
   void initState() {
     super.initState();
     _initNotifications();
+    _loadBlockedUsers();
     _supabaseService.signInAnonymously().then((_) => _setupParticipantListener());
+  }
+
+  Future<void> _loadBlockedUsers() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _blockedUserIds = prefs.getStringList('blocked_users') ?? [];
+    });
+  }
+
+  Future<void> _blockUser(String userId) async {
+    final prefs = await SharedPreferences.getInstance();
+    _blockedUserIds.add(userId);
+    await prefs.setStringList('blocked_users', _blockedUserIds);
+    setState(() {});
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('사용자가 차단되었습니다. 해당 사용자의 방은 더 이상 보이지 않습니다.')),
+      );
+    }
+  }
+
+  void _showReportDialog(TaxiRoom room) {
+    final reasons = ['부적절한 방 제목/내용', '허위 정보 게시', '낚시/피싱 의심', '기타'];
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Text('신고하기', style: TextStyle(fontWeight: FontWeight.bold)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: reasons.map((reason) => ListTile(
+            title: Text(reason),
+            onTap: () async {
+              Navigator.pop(context);
+              await _supabaseService.reportUser(
+                reportedUserId: room.creatorId,
+                roomId: room.id,
+                reason: reason,
+              );
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('신고가 접수되었습니다. 관리자 검토 후 조치하겠습니다.')),
+                );
+              }
+            },
+          )).toList(),
+        ),
+      ),
+    );
+  }
+
+  void _showBlockConfirmDialog(String userId) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Text('사용자 차단'),
+        content: const Text('정말로 이 사용자를 차단하시겠습니까?\n차단하면 이 사용자가 만든 방이 목록에서 사라집니다.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('취소')),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _blockUser(userId);
+            },
+            child: const Text('차단', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -260,6 +332,10 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
                 if (snapshot.hasError) return Center(child: Text('에러: ${snapshot.error}'));
                 if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
                 var rooms = snapshot.data ?? [];
+                
+                // 차단된 사용자의 방 제외
+                rooms = rooms.where((r) => !_blockedUserIds.contains(r.creatorId)).toList();
+
                 if (_filterDate != null) {
                   rooms = rooms.where((r) => r.departureTime.year == _filterDate!.year && r.departureTime.month == _filterDate!.month && r.departureTime.day == _filterDate!.day).toList();
                 }
@@ -301,19 +377,26 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
                                       decoration: BoxDecoration(color: primaryBlue, borderRadius: BorderRadius.circular(8)),
                                       child: Text(dateStr, style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold)),
                                     ),
-                                    if (isCreator)
-                                      Row(
-                                        children: [
-                                          TextButton.icon(
-                                            onPressed: () => _editRoomTime(room), icon: const Icon(Icons.edit_calendar, color: primaryBlue, size: 18),
-                                            label: const Text('시간대 수정', style: TextStyle(color: primaryBlue, fontSize: 12, fontWeight: FontWeight.bold)),
-                                            style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), minimumSize: Size.zero, tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          if (room.participants.length <= 1)
-                                            IconButton(padding: EdgeInsets.zero, constraints: const BoxConstraints(), onPressed: () => _deleteRoom(room.id), icon: const Icon(Icons.delete_outline, color: Color(0xFFF04452), size: 22)),
+                                    PopupMenuButton<String>(
+                                      icon: const Icon(Icons.more_horiz, color: primaryBlue),
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                      onSelected: (value) {
+                                        if (value == 'edit') _editRoomTime(room);
+                                        else if (value == 'delete') _deleteRoom(room.id);
+                                        else if (value == 'report') _showReportDialog(room);
+                                        else if (value == 'block') _showBlockConfirmDialog(room.creatorId);
+                                      },
+                                      itemBuilder: (context) => [
+                                        if (isCreator) ...[
+                                          const PopupMenuItem(value: 'edit', child: Row(children: [Icon(Icons.edit, size: 18), SizedBox(width: 8), Text('시간 수정')])),
+                                          const PopupMenuItem(value: 'delete', child: Row(children: [Icon(Icons.delete, size: 18, color: Colors.red), SizedBox(width: 8), Text('방 삭제', style: TextStyle(color: Colors.red))])),
                                         ],
-                                      ),
+                                        if (!isCreator) ...[
+                                          const PopupMenuItem(value: 'report', child: Row(children: [Icon(Icons.report, size: 18, color: Colors.orange), SizedBox(width: 8), Text('신고하기', style: TextStyle(color: Colors.orange))])),
+                                          const PopupMenuItem(value: 'block', child: Row(children: [Icon(Icons.block, size: 18, color: Colors.red), SizedBox(width: 8), Text('사용자 차단', style: TextStyle(color: Colors.red))])),
+                                        ],
+                                      ],
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(height: 16),

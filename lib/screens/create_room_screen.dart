@@ -140,6 +140,24 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
       return;
     }
 
+    // 0. UGC 가이드라인 동의 확인
+    final agreed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('커뮤니티 가이드라인 동의'),
+        content: const Text(
+          '택시 합승 방 생성 시 부적절한 콘텐츠(욕설, 비하, 광고 등)를 게시할 경우 '
+          '서비스 이용이 제한될 수 있습니다. 이에 동의하십니까?'
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('취소')),
+          TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('동의 및 생성')),
+        ],
+      ),
+    );
+
+    if (agreed != true) return;
+
     setState(() => _isSearching = true);
 
     // 1. 시스템 풀에서 사용 가능한 링크 가져오기 (현재 사용 중인 링크 제외)

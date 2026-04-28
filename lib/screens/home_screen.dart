@@ -3,6 +3,7 @@ import 'meal_screen.dart';
 import 'shuttle_screen.dart';
 import 'notice_screen.dart';
 import 'taxi_share_screen.dart';
+import 'settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,6 +16,15 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF2F4F6),
       appBar: AppBar(
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings, color: Colors.white),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SettingsScreen()),
+            ),
+          ),
+        ],
         title: RichText(
           text: const TextSpan(
             style: TextStyle(
