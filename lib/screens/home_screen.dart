@@ -4,9 +4,33 @@ import 'shuttle_screen.dart';
 import 'notice_screen.dart';
 import 'taxi_share_screen.dart';
 import 'settings_screen.dart';
+import '../services/supabase_service.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final SupabaseService _supabaseService = SupabaseService();
+  String _welcomeMessage = '오늘도 즐거운 학교 생활 되세요!';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadWelcomeMessage();
+  }
+
+  Future<void> _loadWelcomeMessage() async {
+    final msg = await _supabaseService.getWelcomeMessage();
+    if (mounted) {
+      setState(() {
+        _welcomeMessage = msg;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +88,15 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: primaryBlue.withAlpha(50), width: 1),
               ),
-              child: const Row(
+              child: Row(
                 children: [
-                  Icon(Icons.auto_awesome, color: primaryBlue, size: 18),
-                  SizedBox(width: 10),
-                  Text(
-                    '오늘도 즐거운 학교 생활 되세요!',
-                    style: TextStyle(color: primaryBlue, fontWeight: FontWeight.bold, fontSize: 14),
+                  const Icon(Icons.auto_awesome, color: primaryBlue, size: 18),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      _welcomeMessage,
+                      style: const TextStyle(color: primaryBlue, fontWeight: FontWeight.bold, fontSize: 14),
+                    ),
                   ),
                 ],
               ),
@@ -94,7 +120,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 16),
             const Center(
               child: Text(
-                'v0.0.0 | wikiwiki041006@gmail.com',
+                'v1.0.0 | wikiwiki041006@gmail.com',
                 style: TextStyle(
                   color: Color(0xFF8B95A1),
                   fontSize: 11,

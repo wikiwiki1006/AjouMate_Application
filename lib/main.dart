@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'screens/splash_screen.dart';
@@ -16,14 +15,11 @@ void main() async {
     debug: kDebugMode,
   );
 
-  // 모바일 환경에서만 네이버 지도 초기화
-  if (defaultTargetPlatform == TargetPlatform.android ||
-      defaultTargetPlatform == TargetPlatform.iOS) {
-    debugPrint("네이버 지도 초기화 시작 (Native에서 인증 처리됨)");
-    await NaverMapSdk.instance.initialize(
-      onAuthFailed: (ex) => debugPrint("네이버 지도 인증 실패 상세: $ex"),
-    );
-  }
+  // 네이버 지도 초기화
+  await NaverMapSdk.instance.initialize(
+    clientId: 'fgdysmkced',
+    onAuthFailed: (ex) => debugPrint("네이버 지도 인증 실패 상세: $ex"),
+  );
 
   runApp(const UniversityApp());
 }

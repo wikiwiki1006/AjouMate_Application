@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import '../services/supabase_service.dart';
 
 class ShuttleScreen extends StatefulWidget {
   const ShuttleScreen({super.key});
@@ -9,6 +10,7 @@ class ShuttleScreen extends StatefulWidget {
 }
 
 class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProviderStateMixin {
+  final SupabaseService _supabaseService = SupabaseService();
   late Timer _timer;
   DateTime _now = DateTime.now();
   late TabController _tabController;
@@ -16,25 +18,29 @@ class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProvider
   String? _selectedTime;
   String? _selectedStation;
   String? _selectedType;
+  String? _selectedInfo;
 
-  final Map<String, Map<String, List<String>>> shuttleData = {
-    '광교중앙역': {
-      '등교': ['08:30', '08:45', '09:30', '10:05', '10:15', '11:45', '14:45', '16:15'],
-      '하교': ['08:20', '08:35', '09:20', '09:55', '10:05', '11:35', '14:35', '16:05', '18:10'],
-    },
-    '수원역': {
-      '등교': ['08:15', '09:50', '11:20'],
-      '하교': ['15:10', '16:40', '18:10'],
-    },
-  };
+  Map<String, Map<String, List<Map<String, String>>>> shuttleData = {};
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    _loadTimetable();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (mounted) setState(() => _now = DateTime.now());
     });
+  }
+
+  Future<void> _loadTimetable() async {
+    final data = await _supabaseService.getShuttleTimetable();
+    if (mounted) {
+      setState(() {
+        shuttleData = data;
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -44,9 +50,12 @@ class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProvider
     super.dispose();
   }
 
-  String? _getNextShuttle(List<String> times) {
+  String? _getNextShuttle(List<Map<String, String>> shuttleList) {
     final nowStr = '${_now.hour.toString().padLeft(2, '0')}:${_now.minute.toString().padLeft(2, '0')}';
-    for (String time in times) { if (time.compareTo(nowStr) >= 0) return time; }
+    for (var shuttle in shuttleList) { 
+      final time = shuttle['time']!;
+      if (time.compareTo(nowStr) >= 0) return time; 
+    }
     return null;
   }
 
@@ -60,22 +69,27 @@ class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProvider
     return hours > 0 ? '$hours시간 $minutes분 남음' : '$minutes분 남음';
   }
 
-  String _getLocationInfo(String station, String type, String time) {
-    if (type == '등교') {
-      if (station == '광교중앙역') {
-        return time.compareTo('09:30') <= 0 ? '출발: 광교중앙역 1번 출구\n도착: 율곡관 → 원천관 입구' : '출발: 광교중앙역 1번 출구\n도착: 율곡관 → 도서관 옆 도로변';
-      } else {
-        return time == '08:15' ? '출발: 수원역 9~10번 출구 사이\n도착: 율곡관 입구 → 원천관 입구' : '출발: 수원역 9~10번 출구 사이\n도착: 도서관 옆 통학버스 승강장';
-      }
-    } else {
-      String pickup = time == '18:10' ? '율곡관 → 원천관 → 도서관 옆 승강장' : '도서관 옆 통학버스 승강장';
-      return '출발: $pickup\n도착: $station';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     const Color primaryBlue = Color(0xFF1B64DA);
+    
+    if (_isLoading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (shuttleData.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('셔틀 시간표', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          backgroundColor: primaryBlue,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
+        body: const Center(child: Text('데이터를 불러올 수 없습니다. 다시 시도해주세요.')),
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xFFF2F4F6),
       appBar: AppBar(
@@ -113,7 +127,7 @@ class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProvider
   }
 
   Widget _buildShuttleList(String station) {
-    final data = shuttleData[station]!;
+    final data = shuttleData[station] ?? {'등교': [], '하교': []};
     return ListView(
       padding: const EdgeInsets.all(20),
       physics: const BouncingScrollPhysics(),
@@ -130,7 +144,7 @@ class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProvider
     );
   }
 
-  Widget _buildShuttleCard(String title, List<String> times, String station, String type, Color themeColor) {
+  Widget _buildShuttleCard(String title, List<Map<String, String>> shuttleList, String station, String type, Color themeColor) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -158,15 +172,15 @@ class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProvider
           ),
           Padding(
             padding: const EdgeInsets.all(20),
-            child: _buildTimeGrid(times, station, type, themeColor),
+            child: _buildTimeGrid(shuttleList, station, type, themeColor),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildTimeGrid(List<String> times, String station, String type, Color themeColor) {
-    final nextShuttle = _getNextShuttle(times);
+  Widget _buildTimeGrid(List<Map<String, String>> shuttleList, String station, String type, Color themeColor) {
+    final nextShuttle = _getNextShuttle(shuttleList);
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -176,17 +190,22 @@ class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProvider
         mainAxisSpacing: 12,
         childAspectRatio: 2.0,
       ),
-      itemCount: times.length,
+      itemCount: shuttleList.length,
       itemBuilder: (context, index) {
-        final time = times[index];
+        final shuttle = shuttleList[index];
+        final time = shuttle['time']!;
+        final info = shuttle['info']!;
         final isNext = time == nextShuttle;
         final isSelected = _selectedTime == time && _selectedStation == station && _selectedType == type;
 
         return GestureDetector(
           onTap: () {
             setState(() {
-              if (isSelected) { _selectedTime = null; _selectedStation = null; _selectedType = null; }
-              else { _selectedTime = time; _selectedStation = station; _selectedType = type; }
+              if (isSelected) { 
+                _selectedTime = null; _selectedStation = null; _selectedType = null; _selectedInfo = null;
+              } else { 
+                _selectedTime = time; _selectedStation = station; _selectedType = type; _selectedInfo = info;
+              }
             });
           },
           child: Container(
@@ -246,7 +265,7 @@ class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProvider
             children: [
               const Icon(Icons.location_on, color: primaryBlue, size: 22),
               const SizedBox(width: 12),
-              Expanded(child: Text(_getLocationInfo(_selectedStation!, _selectedType!, _selectedTime!), style: const TextStyle(fontSize: 15, height: 1.5, color: Color(0xFF4E5968), fontWeight: FontWeight.w500))),
+              Expanded(child: Text((_selectedInfo ?? '').replaceAll('\\n', '\n'), style: const TextStyle(fontSize: 15, height: 1.5, color: Color(0xFF4E5968), fontWeight: FontWeight.w500))),
             ],
           ),
           const SizedBox(height: 24),
@@ -254,7 +273,7 @@ class _ShuttleScreenState extends State<ShuttleScreen> with SingleTickerProvider
             width: double.infinity,
             height: 54,
             child: ElevatedButton(
-              onPressed: () => setState(() => _selectedTime = null),
+              onPressed: () => setState(() { _selectedTime = null; _selectedInfo = null; }),
               style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFF2F4F6), foregroundColor: const Color(0xFF4E5968), elevation: 0, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
               child: const Text('닫기', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             ),

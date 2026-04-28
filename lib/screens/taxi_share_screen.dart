@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import '../services/supabase_service.dart';
@@ -26,6 +27,8 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
   StreamSubscription? _participantsSubscription;
   Map<String, int> _lastParticipantCounts = {};
   List<String> _blockedUserIds = [];
+  bool _showOnlyMyRooms = false;
+  bool _isNoticeExpanded = false;
 
   @override
   void initState() {
@@ -313,6 +316,11 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
         title: const Text('택시 합승', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: primaryBlue, iconTheme: const IconThemeData(color: Colors.white), elevation: 4,
         actions: [
+          IconButton(
+            icon: Icon(_showOnlyMyRooms ? Icons.person : Icons.person_outline, color: Colors.white),
+            tooltip: '내가 만든 방만 보기',
+            onPressed: () => setState(() => _showOnlyMyRooms = !_showOnlyMyRooms),
+          ),
           IconButton(icon: Icon(_filterDate == null ? Icons.calendar_month : Icons.event_available, color: Colors.white), onPressed: _selectFilterDate),
           if (_filterDate != null) IconButton(icon: const Icon(Icons.filter_list_off, color: Colors.white), onPressed: () => setState(() => _filterDate = null)),
         ],
@@ -320,6 +328,57 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
       ),
       body: Column(
         children: [
+          InkWell(
+            onTap: () => setState(() => _isNoticeExpanded = !_isNoticeExpanded),
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: primaryBlue.withAlpha(40)),
+                boxShadow: [BoxShadow(color: Colors.black.withAlpha(5), blurRadius: 10, offset: const Offset(0, 2))],
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.info_outline, color: primaryBlue, size: 20),
+                      const SizedBox(width: 12),
+                      const Expanded(
+                        child: Text(
+                          '서비스 이용 및 정산 방법 안내',
+                          style: TextStyle(color: Color(0xFF191F28), fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Icon(
+                        _isNoticeExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                        color: const Color(0xFF8B95A1),
+                      ),
+                    ],
+                  ),
+                  if (_isNoticeExpanded) ...[
+                    const Divider(height: 24, color: Color(0xFFF2F4F6)),
+                    const Text(
+                      '아주MATE는 요금 결제 및 정산 기능을 직접 제공하지 않습니다. 요금 결제는 외부 택시 호출 앱 또는 현장에서 진행해 주시고, 메이트 간 비용 정산은 오픈채팅방 내 송금 등 상호 협의된 방법을 이용해 주시기 바랍니다.',
+                      style: TextStyle(
+                        color: Color(0xFF4E5968),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        height: 1.6,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ),
+          if (_showOnlyMyRooms)
+            Container(
+              width: double.infinity, padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20), color: Colors.amber.withAlpha(20),
+              child: const Text('내가 만든 방만 보기 활성화됨', style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 13)),
+            ),
           if (_filterDate != null)
             Container(
               width: double.infinity, padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20), color: primaryBlue.withAlpha(20),
@@ -335,6 +394,11 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
                 
                 // 차단된 사용자의 방 제외
                 rooms = rooms.where((r) => !_blockedUserIds.contains(r.creatorId)).toList();
+
+                // 내가 만든 방 필터링
+                if (_showOnlyMyRooms) {
+                  rooms = rooms.where((r) => r.creatorId == _supabaseService.currentUserId).toList();
+                }
 
                 if (_filterDate != null) {
                   rooms = rooms.where((r) => r.departureTime.year == _filterDate!.year && r.departureTime.month == _filterDate!.month && r.departureTime.day == _filterDate!.day).toList();

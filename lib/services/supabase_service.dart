@@ -193,6 +193,71 @@ class SupabaseService {
     return true;
   }
 
+  // 셔틀 시간표 가져오기
+  Future<Map<String, Map<String, List<Map<String, String>>>>> getShuttleTimetable() async {
+    try {
+      final response = await _client
+          .from('shuttle_timetable')
+          .select()
+          .order('sort_order', ascending: true);
+      
+      print("셔틀 데이터 수신 성공: ${response.length}개 행 로드됨");
+
+      if (response.isEmpty) {
+        return {}; // 데이터가 없으면 빈 맵 반환하여 에러 처리 유도
+      }
+
+      Map<String, Map<String, List<Map<String, String>>>> data = {
+        '광교중앙역': {'등교': [], '하교': []},
+        '수원역': {'등교': [], '하교': []},
+      };
+
+      for (var row in response) {
+        final station = row['station'] as String;
+        final type = row['type'] as String;
+        final time = row['departure_time'] as String;
+        final info = row['location_info'] as String? ?? '';
+        
+        if (data.containsKey(station)) {
+          data[station]![type]?.add({
+            'time': time,
+            'info': info,
+          });
+        }
+      }
+      return data;
+    } catch (e) {
+      print("셔틀 시간표 로딩 오류: $e");
+      return {};
+    }
+  }
+
+  // 환영 메시지 가져오기
+  Future<String> getWelcomeMessage() async {
+    try {
+      final response = await _client
+          .from('app_settings')
+          .select('value')
+          .eq('key', 'welcome_message')
+          .maybeSingle();
+      return response?['value'] ?? '오늘도 즐거운 학교 생활 되세요!';
+    } catch (e) {
+      return '오늘도 즐거운 학교 생활 되세요!';
+    }
+  }
+
+  // 특정 사용자가 만든 모든 방 삭제
+  Future<void> deleteRoomsByCreator(String userId) async {
+    try {
+      await _client
+          .from('taxi_rooms')
+          .delete()
+          .eq('creator_id', userId);
+    } catch (e) {
+      print('사용자 방 일괄 삭제 오류: $e');
+    }
+  }
+
   // 사용자 신고
   Future<void> reportUser({
     required String reportedUserId,

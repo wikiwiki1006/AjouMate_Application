@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../services/supabase_service.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   Future<void> _deleteAccountData(BuildContext context) async {
+    final service = SupabaseService();
+    final userId = service.currentUserId;
+
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('데이터 삭제 및 탈퇴'),
-        content: const Text('정말로 탈퇴하시겠습니까?\n이 기기에서 생성한 모든 데이터와 차단 목록이 삭제됩니다.'),
+        content: const Text('정말로 탈퇴하시겠습니까?\n이 기기에서 생성한 모든 데이터와 본인이 만든 방이 삭제됩니다.'),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('취소')),
           TextButton(
@@ -23,11 +27,16 @@ class SettingsScreen extends StatelessWidget {
     );
 
     if (confirm == true) {
-      // 1. 로컬 데이터 삭제
+      // 1. 서버 데이터 삭제 (본인이 만든 방 일괄 삭제)
+      if (userId != null) {
+        await service.deleteRoomsByCreator(userId);
+      }
+
+      // 2. 로컬 데이터 삭제 (동의 기록, 차단 목록 등)
       final prefs = await SharedPreferences.getInstance();
       await prefs.clear();
 
-      // 2. Supabase 세션 로그아웃 (익명 세션 종료)
+      // 3. Supabase 세션 로그아웃
       await Supabase.instance.client.auth.signOut();
 
       if (context.mounted) {
