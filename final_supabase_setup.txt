@@ -1,0 +1,103 @@
+-- [최종 안정화 버전] 아주MATE Supabase 통합 설정 SQL --
+-- 이 스크립트는 기존 설정과의 충돌(이미 존재하는 정책 등)을 방지하도록 작성되었습니다.
+
+-- 1. 택시 합승 방 테이블 생성
+CREATE TABLE IF NOT EXISTS public.taxi_rooms (
+  id bigserial primary key,
+  creator_id text not null,
+  creator_name text not null,
+  start_location_name text not null,
+  start_lat float8 not null,
+  start_lng float8 not null,
+  end_location_name text not null,
+  end_lat float8 not null,
+  end_lng float8 not null,
+  departure_time timestamptz not null,
+  max_people int not null default 4,
+  participants text[] default '{}',
+  chat_url text,
+  created_at timestamptz default now()
+);
+
+-- 2. RLS 활성화
+ALTER TABLE public.taxi_rooms ENABLE ROW LEVEL SECURITY;
+
+-- 3. 보안 정책(Policy) 재설정 (DROP 후 CREATE)
+DROP POLICY IF EXISTS "누구나 방 목록 보기" ON public.taxi_rooms;
+CREATE POLICY "누구나 방 목록 보기" ON public.taxi_rooms FOR SELECT TO public USING (true);
+
+DROP POLICY IF EXISTS "인증된 유저 방 생성" ON public.taxi_rooms;
+CREATE POLICY "인증된 유저 방 생성" ON public.taxi_rooms FOR INSERT TO public WITH CHECK (true);
+
+DROP POLICY IF EXISTS "인증된 유저 방 수정" ON public.taxi_rooms;
+CREATE POLICY "인증된 유저 방 수정" ON public.taxi_rooms FOR UPDATE TO public USING (true);
+
+DROP POLICY IF EXISTS "방장은 혼자일 때만 방 삭제 가능" ON public.taxi_rooms;
+CREATE POLICY "방장은 혼자일 때만 방 삭제 가능" ON public.taxi_rooms FOR DELETE TO public USING (true);
+
+
+-- 4. 자동 삭제 설정 (pg_cron) - 약속시간 5분 후 삭제
+CREATE EXTENSION IF NOT EXISTS pg_cron;
+
+-- 기존 스케줄이 있다면 먼저 제거하여 충돌 방지
+SELECT cron.unschedule('delete-expired-rooms') 
+FROM cron.job 
+WHERE jobname = 'delete-expired-rooms';
+
+-- 1분마다 체크하여 5분 지난 방 자동 삭제 스케줄 등록
+SELECT cron.schedule(
+  'delete-expired-rooms',
+  '* * * * *',
+  $$ DELETE FROM public.taxi_rooms WHERE departure_time < now() - interval '5 minutes' $$
+);
+
+
+-- 5. 방 삭제 시 채팅 링크 자동 반환 트리거 (필수)
+CREATE OR REPLACE FUNCTION public.handle_room_deletion()
+RETURNS TRIGGER AS $$
+BEGIN
+  -- 삭제되는 방의 chat_url이 chat_pool에 있다면 is_used를 false로 변경
+  IF OLD.chat_url IS NOT NULL THEN
+    UPDATE public.chat_pool
+    SET is_used = false
+    WHERE url = OLD.chat_url;
+  END IF;
+  RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS tr_on_room_deleted ON public.taxi_rooms;
+CREATE TRIGGER tr_on_room_deleted
+AFTER DELETE ON public.taxi_rooms
+FOR EACH ROW
+EXECUTE FUNCTION public.handle_room_deletion();
+
+
+-- 6. 채팅 링크 풀 테이블 설정
+CREATE TABLE IF NOT EXISTS public.chat_pool (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  url text NOT NULL UNIQUE,
+  usage_count int DEFAULT 0,
+  is_used boolean DEFAULT false,
+  last_used_at timestamptz,
+  created_at timestamptz DEFAULT now()
+);
+
+-- 이미 테이블이 있는 경우를 대비해 is_used 컬럼 추가 확인
+ALTER TABLE public.chat_pool ADD COLUMN IF NOT EXISTS is_used boolean DEFAULT false;
+
+
+-- 7. 채팅 링크 풀 RLS 및 보안 정책
+ALTER TABLE public.chat_pool ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Allow public read chat_pool" ON public.chat_pool;
+CREATE POLICY "Allow public read chat_pool" ON public.chat_pool FOR SELECT TO public USING (true);
+
+DROP POLICY IF EXISTS "Allow public update chat_pool" ON public.chat_pool;
+CREATE POLICY "Allow public update chat_pool" ON public.chat_pool FOR UPDATE TO public USING (true);
+
+
+-- 8. 최종 결과 확인용 쿼리
+SELECT 'taxi_rooms count' as info, count(*) FROM public.taxi_rooms
+UNION ALL
+SELECT 'available chat links', count(*) FROM public.chat_pool WHERE is_used = false;

@@ -1,0 +1,67 @@
+-- [최종 안정화 버전] Supabase Chat Pool Setup SQL (is_used 컬럼 포함) --
+
+-- 1. 채팅 링크 풀 테이블 생성
+CREATE TABLE IF NOT EXISTS public.chat_pool (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  url text NOT NULL,
+  usage_count int DEFAULT 0,
+  is_used boolean DEFAULT false, -- 현재 방에서 사용 중인지 여부 확인용
+  last_used_at timestamp with time zone,
+  created_at timestamp with time zone DEFAULT now()
+);
+
+-- 2. 중복 제거를 위한 사전 정리 (이미 데이터가 많은 경우 실행)
+DELETE FROM public.chat_pool
+WHERE id NOT IN (
+    SELECT id FROM (
+        SELECT DISTINCT ON (url) id
+        FROM public.chat_pool
+        ORDER BY url, created_at ASC
+    ) AS unique_ids
+);
+
+-- 3. URL 중복 방지 제약 조건 추가
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'chat_pool_url_unique'
+    ) THEN
+        ALTER TABLE public.chat_pool ADD CONSTRAINT chat_pool_url_unique UNIQUE (url);
+    END IF;
+END $$;
+
+-- 4. 컬럼 보강 (기존 테이블이 이미 있는 경우를 대비해 누락된 컬럼 추가)
+ALTER TABLE public.chat_pool ADD COLUMN IF NOT EXISTS usage_count int DEFAULT 0;
+ALTER TABLE public.chat_pool ADD COLUMN IF NOT EXISTS is_used boolean DEFAULT false;
+ALTER TABLE public.chat_pool ADD COLUMN IF NOT EXISTS last_used_at timestamp with time zone;
+
+-- 5. 데이터 삽입 (UPSERT 방식)
+INSERT INTO public.chat_pool (url, usage_count) VALUES
+('https://open.kakao.com/o/gIbWc8ri', 0),
+('https://open.kakao.com/o/gYARFhsi', 0),
+('https://open.kakao.com/o/gxsMIhsi', 0),
+('https://open.kakao.com/o/gifX4hsi', 0),
+('https://open.kakao.com/o/gdJBvxti', 0),
+('https://open.kakao.com/o/gYPfwxti', 0)
+ON CONFLICT (url) DO NOTHING;
+
+-- 6. 보안 설정 (RLS 활성화)
+ALTER TABLE public.chat_pool ENABLE ROW LEVEL SECURITY;
+
+-- 7. 조회 정책 설정 (누구나 사용 가능한 링크 확인 가능)
+DROP POLICY IF EXISTS "Allow public read chat_pool" ON public.chat_pool;
+CREATE POLICY "Allow public read chat_pool" 
+ON public.chat_pool FOR SELECT 
+TO public 
+USING (true);
+
+-- 8. 업데이트 정책 설정 (앱에서 사용 횟수/시간/상태 업데이트 허용)
+DROP POLICY IF EXISTS "Allow public update chat_pool" ON public.chat_pool;
+CREATE POLICY "Allow public update chat_pool"
+ON public.chat_pool FOR UPDATE
+TO public
+USING (true)
+WITH CHECK (true);
+
+-- 9. 최종 결과 확인 (사용 가능한 링크 먼저 정렬)
+SELECT * FROM public.chat_pool ORDER BY is_used ASC, usage_count ASC, last_used_at ASC;

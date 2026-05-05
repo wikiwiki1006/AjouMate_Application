@@ -60,7 +60,7 @@ class TaxiRoom {
       'end_location_name': endLocationName,
       'end_lat': endLat,
       'end_lng': endLng,
-      'departure_time': departureTime.toIso8601String(),
+      'departure_time': departureTime.toUtc().toIso8601String(),
       'max_people': maxPeople,
       'participants': participants,
       'chat_url': chatUrl,

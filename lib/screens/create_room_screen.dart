@@ -140,6 +140,18 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
       return;
     }
 
+    final departure = DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day, _selectedTime.hour, _selectedTime.minute);
+    
+    // 현재 시간보다 이전인지 체크
+    if (departure.isBefore(DateTime.now())) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('출발 시간이 현재 시간보다 이전일 수 없습니다. 시간을 다시 확인해주세요.'))
+        );
+      }
+      return;
+    }
+
     setState(() => _isSearching = true);
 
     // 1. 시스템 풀에서 사용 가능한 링크 가져오기 (현재 사용 중인 링크 제외)
@@ -160,19 +172,6 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
 
     if (finalChatUrl == null) return; // 최종적으로 링크가 없으면 종료
 
-    final departure = DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day, _selectedTime.hour, _selectedTime.minute);
-    
-    // 현재 시간보다 이전인지 체크
-    if (departure.isBefore(DateTime.now())) {
-      setState(() => _isSearching = false);
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('출발 시간이 현재 시간보다 이전일 수 없습니다. 시간을 다시 확인해주세요.'))
-        );
-      }
-      return;
-    }
-
     final newRoom = TaxiRoom(
       id: '', creatorId: _supabaseService.currentUserId ?? 'unknown', creatorName: '사용자',
       startLocationName: _startNameController.text, startLat: _startLatLng!.latitude, startLng: _startLatLng!.longitude,
@@ -185,16 +184,19 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
     try {
       setState(() => _isSearching = true);
       await _supabaseService.createTaxiRoom(newRoom);
-      if (mounted) { 
-        Navigator.pop(context); 
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('합승 방이 생성되었습니다!'))); 
+      if (mounted) {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('합승 방이 생성되었습니다!')));
       }
-    } catch (e) { 
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('오류 발생: $e'))); 
+    } catch (e) {
+      // 방 생성 실패 시 할당된 링크 다시 반환 (시스템 링크인 경우만)
+      if (finalChatUrl != null) {
+        await _supabaseService.releaseChatLink(finalChatUrl);
+      }
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('오류 발생: $e')));
     } finally {
       if (mounted) setState(() => _isSearching = false);
-    }
-  }
+    }  }
 
   Future<String?> _showManualLinkDialog() async {
     final TextEditingController linkController = TextEditingController();

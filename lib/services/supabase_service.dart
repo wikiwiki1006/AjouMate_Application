@@ -56,39 +56,37 @@ class SupabaseService {
             .toList());
   }
 
-  // 만료된 방 자동 삭제
+  // 만료된 방 자동 삭제 및 링크 반환 (UTC 기준)
   Future<void> cleanupOldRooms() async {
     try {
-      final expiryTime = DateTime.now().subtract(const Duration(hours: 1)).toIso8601String();
-      await _client
+      final nowUtc = DateTime.now().toUtc();
+      final expiryTime = nowUtc.subtract(const Duration(minutes: 5)).toIso8601String();
+      
+      // 1. 만료된 방 삭제 (DB 트리거가 링크를 자동 반환함)
+      final response = await _client
           .from('taxi_rooms')
           .delete()
-          .lt('departure_time', expiryTime);
+          .lt('departure_time', expiryTime)
+          .select();
+      
+      if (response.isNotEmpty) {
+        print("${response.length}개의 만료된 방이 삭제되었습니다. (기준: $expiryTime)");
+      }
     } catch (e) {
       print("만료된 방 정리 오류: $e");
     }
   }
 
-  // 순차적 채팅 링크 가져오기
+  // 순차적 채팅 링크 가져오기 (is_used 필드 활용)
   Future<String?> getSequentialChatLink() async {
     try {
       await cleanupOldRooms();
-      final activeRoomsResponse = await _client
-          .from('taxi_rooms')
-          .select('chat_url');
       
-      final List<String> usedUrls = (activeRoomsResponse as List)
-          .map((item) => item['chat_url']?.toString())
-          .where((url) => url != null && url.isNotEmpty)
-          .cast<String>()
-          .toList();
-
-      var query = _client.from('chat_pool').select();
-      if (usedUrls.isNotEmpty) {
-        query = query.not('url', 'in', usedUrls);
-      }
-
-      final response = await query
+      // 1. chat_pool에서 사용 중이지 않은 링크 중 가장 오래된/적게 사용된 것 선택
+      final response = await _client
+          .from('chat_pool')
+          .select()
+          .eq('is_used', false)
           .order('usage_count', ascending: true)
           .order('last_used_at', ascending: true)
           .limit(1)
@@ -99,9 +97,11 @@ class SupabaseService {
         final String url = response['url'] as String;
         final int currentCount = response['usage_count'] ?? 0;
 
+        // 2. 해당 링크를 사용 중(is_used = true)으로 표시하고 정보 업데이트
         await _client.from('chat_pool').update({
           'usage_count': currentCount + 1,
           'last_used_at': DateTime.now().toIso8601String(),
+          'is_used': true,
         }).eq('id', linkId);
 
         return url;
@@ -112,9 +112,35 @@ class SupabaseService {
     return null;
   }
 
+  // 채팅 링크 사용 가능 상태로 복구
+  Future<void> releaseChatLink(String url) async {
+    try {
+      await _client
+          .from('chat_pool')
+          .update({'is_used': false})
+          .eq('url', url);
+    } catch (e) {
+      print("링크 반환 오류: $e");
+    }
+  }
+
   // 택시 방 삭제
   Future<void> deleteTaxiRoom(String roomId) async {
     try {
+      // 1. 먼저 삭제할 방의 정보를 가져옴 (chat_url 확인용)
+      final roomData = await _client
+          .from('taxi_rooms')
+          .select('chat_url')
+          .eq('id', roomId)
+          .maybeSingle();
+
+      if (roomData == null) {
+        throw Exception('이미 삭제된 방이거나 정보를 찾을 수 없습니다.');
+      }
+
+      final String? chatUrl = roomData['chat_url'];
+
+      // 2. 방 삭제
       final response = await _client
           .from('taxi_rooms')
           .delete()
@@ -122,7 +148,15 @@ class SupabaseService {
           .select();
 
       if (response.isEmpty) {
-        throw Exception('삭제 권한이 없거나 이미 삭제된 방입니다.');
+        throw Exception('삭제 권한이 없거나 삭제에 실패했습니다.');
+      }
+
+      // 3. 만약 시스템 풀 링크였다면 다시 사용 가능(is_used = false)으로 변경
+      if (chatUrl != null && chatUrl.isNotEmpty) {
+        await _client
+            .from('chat_pool')
+            .update({'is_used': false})
+            .eq('url', chatUrl);
       }
     } catch (e) {
       print('방 삭제 중 오류 발생: $e');

@@ -35,7 +35,10 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
     super.initState();
     _initNotifications();
     _loadBlockedUsers();
-    _supabaseService.signInAnonymously().then((_) => _setupParticipantListener());
+    _supabaseService.signInAnonymously().then((_) {
+      _supabaseService.cleanupOldRooms(); // 접속 시 만료된 방 정리
+      _setupParticipantListener();
+    });
   }
 
   Future<void> _loadBlockedUsers() async {
@@ -167,8 +170,9 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
   }
 
   void _editRoomTime(TaxiRoom room) async {
-    DateTime selectedDate = room.departureTime;
-    TimeOfDay selectedTime = TimeOfDay.fromDateTime(room.departureTime);
+    // 수정을 위해 현지 시간으로 변환
+    DateTime selectedDate = room.departureTime.toLocal();
+    TimeOfDay selectedTime = TimeOfDay.fromDateTime(selectedDate);
 
     final newDate = await showDatePicker(context: context, initialDate: selectedDate, firstDate: DateTime.now(), lastDate: DateTime.now().add(const Duration(days: 7)));
     if (newDate == null) return;
@@ -392,6 +396,12 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
                 if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
                 var rooms = snapshot.data ?? [];
                 
+                // 약속시간 5분 지난 방은 화면에서 즉시 제외 (UTC 기준)
+                final nowUtc = DateTime.now().toUtc();
+                rooms = rooms.where((r) => 
+                  r.departureTime.toUtc().add(const Duration(minutes: 5)).isAfter(nowUtc)
+                ).toList();
+
                 // 차단된 사용자의 방 제외
                 rooms = rooms.where((r) => !_blockedUserIds.contains(r.creatorId)).toList();
 
@@ -409,8 +419,10 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
                   itemCount: rooms.length, padding: const EdgeInsets.fromLTRB(20, 20, 20, 80), physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     final room = rooms[index];
-                    final timeStr = DateFormat('HH:mm').format(room.departureTime);
-                    final dateStr = DateFormat('MM월 dd일').format(room.departureTime);
+                    // 표시할 때는 현지 시간(한국 시간)으로 변환
+                    final localDepartureTime = room.departureTime.toLocal();
+                    final timeStr = DateFormat('HH:mm').format(localDepartureTime);
+                    final dateStr = DateFormat('MM월 dd일').format(localDepartureTime);
                     final isFull = room.participants.length >= room.maxPeople;
                     final isParticipant = room.participants.contains(_supabaseService.currentUserId);
                     final isCreator = room.creatorId == _supabaseService.currentUserId;
@@ -444,7 +456,7 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
                                     PopupMenuButton<String>(
                                       icon: const Icon(Icons.more_horiz, color: primaryBlue),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                                      onSelected: (value) {
+                                      onSelected: (value) async {
                                         if (value == 'edit') _editRoomTime(room);
                                         else if (value == 'delete') _deleteRoom(room.id);
                                         else if (value == 'report') _showReportDialog(room);
@@ -493,10 +505,17 @@ class _TaxiShareScreenState extends State<TaxiShareScreen> {
                                   onTap: (isFull && !isParticipant) ? null : () => _openKakaoChat(room),
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                    decoration: BoxDecoration(color: (isFull && !isParticipant) ? Colors.grey[200] : Colors.amber.withAlpha(40), borderRadius: BorderRadius.circular(12), border: Border.all(color: (isFull && !isParticipant) ? Colors.grey : Colors.amber, width: 1)),
+                                    decoration: BoxDecoration(
+                                      color: (isFull && !isParticipant) ? Colors.grey[200] : Colors.amber.withAlpha(40), 
+                                      borderRadius: BorderRadius.circular(12), 
+                                      border: Border.all(color: (isFull && !isParticipant) ? Colors.grey : Colors.amber, width: 1)
+                                    ),
                                     child: Row(children: [
                                       Icon(Icons.chat_bubble, color: (isFull && !isParticipant) ? Colors.grey : Colors.amber, size: 18), const SizedBox(width: 6),
-                                      Text((isFull && !isParticipant) ? '모집 완료' : '카톡 참여', style: TextStyle(color: (isFull && !isParticipant) ? Colors.grey : primaryBlue, fontWeight: FontWeight.bold, fontSize: 15)),
+                                      Text(
+                                        (isFull && !isParticipant) ? '모집 완료' : '카톡 참여', 
+                                        style: TextStyle(color: (isFull && !isParticipant) ? Colors.grey : primaryBlue, fontWeight: FontWeight.bold, fontSize: 15)
+                                      ),
                                     ]),
                                   ),
                                 ),
