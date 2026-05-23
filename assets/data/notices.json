@@ -66,6 +66,12 @@
     "is_pinned": true
   },
   {
+    "title": "[AI융합교육원]인문/경영 SW융합전공 신청하고 CU 상품권 받자",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369169&article.offset=0&articleLimit=10",
+    "date": "2026-05-23",
+    "is_pinned": false
+  },
+  {
     "title": "[AI융합교육원](재공지)2026 참여대학 공동 해커톤(INHA SW NET-ZERO 해커톤) 아주대 대표팀 모집(~5/27)",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369160&article.offset=0&articleLimit=10",
     "date": "2026-05-22",
@@ -121,7 +127,7 @@
   },
   {
     "title": "[국가근로] 2026-1 하계방학 대체근로 장학생 모집(~5/27 13시까지)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369131&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369131&article.offset=10&articleLimit=10",
     "date": "2026-05-22",
     "is_pinned": false
   },
@@ -181,7 +187,7 @@
   },
   {
     "title": "[학생지원팀]축제 기간 중 학생증 양도 및 매매 행위 금지 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369081&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369081&article.offset=20&articleLimit=10",
     "date": "2026-05-21",
     "is_pinned": false
   },
@@ -241,7 +247,7 @@
   },
   {
     "title": "[데이터보안] 2026 위험관리(RMF) 및 보안관리체계 실무 워크숍 참가 신청 (~5/27(수) 15:00)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369021&article.offset=20&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369021&article.offset=30&articleLimit=10",
     "date": "2026-05-20",
     "is_pinned": false
   },
@@ -301,7 +307,7 @@
   },
   {
     "title": "[국립중앙도서관] 2026 청년 디지털 봉사단 잇(IT)다 8기 모집 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=368970&article.offset=30&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=368970&article.offset=40&articleLimit=10",
     "date": "2026-05-20",
     "is_pinned": false
   },
@@ -356,12 +362,6 @@
   {
     "title": "[다산학부대학] <전기자동차의 역할과 신뢰성> 이교범 교수님 특강 (5/20 16시 30분 연암관 대강당)",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=368946&article.offset=40&articleLimit=10",
-    "date": "2026-05-19",
-    "is_pinned": false
-  },
-  {
-    "title": "[교외장학] 2026년 2학기 삼성드림클래스 대학생멘토 선발공고",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=368939&article.offset=40&articleLimit=10",
     "date": "2026-05-19",
     "is_pinned": false
   }
