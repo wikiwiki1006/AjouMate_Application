@@ -1,5 +1,11 @@
 [
   {
+    "title": "[학부] 2026-2학기 시간제등록생 신청 기간 안내(07.01.~07.08.)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370361&article.offset=0&articleLimit=10",
+    "date": "2026-06-15",
+    "is_pinned": true
+  },
+  {
     "title": "[학사] 2026-2학기 휴학/복학 신청 안내",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370302&article.offset=0&articleLimit=10",
     "date": "2026-06-15",
@@ -9,6 +15,12 @@
     "title": "[학부][졸업]2026-2학기 학사학위취득유예(학취유), 졸업연기 신청 안내",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370240&article.offset=0&articleLimit=10",
     "date": "2026-06-12",
+    "is_pinned": true
+  },
+  {
+    "title": "[학부/학사과정] 2026학년도 하계 계절수업 추가 등록 일정 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370188&article.offset=0&articleLimit=10",
+    "date": "2026-06-11",
     "is_pinned": true
   },
   {
@@ -27,12 +39,6 @@
     "title": "[학부] 2026-2학기 재입학 신청 안내",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369313&article.offset=0&articleLimit=10",
     "date": "2026-05-27",
-    "is_pinned": true
-  },
-  {
-    "title": "[학부/학사과정] 2026학년도 하계 계절수업 등록 및 수강포기(계절학기 수강료 환불) 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=369257&article.offset=0&articleLimit=10",
-    "date": "2026-05-26",
     "is_pinned": true
   },
   {
@@ -66,6 +72,42 @@
     "is_pinned": true
   },
   {
+    "title": "[RISE] 2026-1학기 현장실습 \"실습톡톡\" 참여신청 안내(★6.23.(화) 18시까지)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370428&article.offset=0&articleLimit=10",
+    "date": "2026-06-16",
+    "is_pinned": false
+  },
+  {
+    "title": "[중앙도서관] Ajou 꾸준 리더(Reader) 프로젝트 : 이달의 꾸준한 리더 찾기",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370423&article.offset=0&articleLimit=10",
+    "date": "2026-06-16",
+    "is_pinned": false
+  },
+  {
+    "title": "[우편취급국] 국내우편 요금 인상 조정 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370422&article.offset=0&articleLimit=10",
+    "date": "2026-06-16",
+    "is_pinned": false
+  },
+  {
+    "title": "[AI융합교육원]2026년도 크래프톤 정글 AI-Powered 웹개발 집중 캠프(8/3~8/14) 참가자 모집",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370412&article.offset=0&articleLimit=10",
+    "date": "2026-06-16",
+    "is_pinned": false
+  },
+  {
+    "title": "학생지원팀 소통 채널 'AJOU ON' 학생 서포터즈 모집 안내(~ 07/03(금)까지)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370411&article.offset=0&articleLimit=10",
+    "date": "2026-06-16",
+    "is_pinned": false
+  },
+  {
+    "title": "[RISE사업단] 'AI·반도체 글로컬 기업 현장 멘토링 프로그램(2회차)' 참가자 모집!",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370390&article.offset=0&articleLimit=10",
+    "date": "2026-06-16",
+    "is_pinned": false
+  },
+  {
     "title": "[일자리+센터] [졸특] AJOU26 이공계 취업 올클리어 캠프",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370366&article.offset=0&articleLimit=10",
     "date": "2026-06-15",
@@ -84,12 +126,6 @@
     "is_pinned": false
   },
   {
-    "title": "[학부] 2026-2학기 시간제등록생 신청 기간 안내(07.01.~07.08.)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370361&article.offset=0&articleLimit=10",
-    "date": "2026-06-15",
-    "is_pinned": false
-  },
-  {
     "title": "[일자리+센터] 🙋인문•사회•경영대 모여라! 대기업 출신 강사님과 함께 '취업부트캠프 4기' 로 취준 끝내자!🔥",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370359&article.offset=0&articleLimit=10",
     "date": "2026-06-15",
@@ -97,31 +133,31 @@
   },
   {
     "title": "[아주대 GUIP] 현장 실습 프로그램 참가자 모집 신청 안내 (~6/23 화)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370357&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370357&article.offset=10&articleLimit=10",
     "date": "2026-06-15",
     "is_pinned": false
   },
   {
     "title": "[RISE사업단+사회봉사센터] 2026 우만1동 우만이·우순이와 함께하는 ‘사랑의 찬찬찬’ 나눔 봉사 프로그램 참가자 모집!(선착순 마감)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370356&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370356&article.offset=10&articleLimit=10",
     "date": "2026-06-15",
     "is_pinned": false
   },
   {
     "title": "[일자리+센터] 🍀하반기 취업성공 할 \"졸업생\"을 모집합니다💞 26년 하계 'AJOU 취업훈련소' 서류면접 통합반(for 졸업생)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370355&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370355&article.offset=10&articleLimit=10",
     "date": "2026-06-15",
     "is_pinned": false
   },
   {
     "title": "[시설팀] 약학관 폐수배관 보수관련 3층 단수안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370354&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370354&article.offset=10&articleLimit=10",
     "date": "2026-06-15",
     "is_pinned": false
   },
   {
     "title": "🚀NIPA-AWS AI 보안 전문가의 시작, AWS AI Security 부트캠프 모집!",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370346&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370346&article.offset=10&articleLimit=10",
     "date": "2026-06-15",
     "is_pinned": false
   },
@@ -157,31 +193,31 @@
   },
   {
     "title": "(입학팀)(카카오톡 이모티콘(무료)) 치토의 대학 생활?!! _ 아주대학교 카톡 친구 추가하고 이모티콘 받아가세요",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370316&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370316&article.offset=20&articleLimit=10",
     "date": "2026-06-15",
     "is_pinned": false
   },
   {
     "title": "[총무팀] 내정보 내가지킨다! 일상 속 개인정보 보호 실천 수칙",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370304&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370304&article.offset=20&articleLimit=10",
     "date": "2026-06-15",
     "is_pinned": false
   },
   {
     "title": "[재공지][인공지능연구원·AI융합교육원] 제3회 AI융합워크숍 개최 안내 (6/16(화) 14:00)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370294&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370294&article.offset=20&articleLimit=10",
     "date": "2026-06-15",
     "is_pinned": false
   },
   {
     "title": "(마감)[AI융합교육원] 🚀3일 집중 실습 ! 🤖Claude Code 캠프 참가자 모집(~7.15, 선착순 30명)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370278&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370278&article.offset=20&articleLimit=10",
     "date": "2026-06-13",
     "is_pinned": false
   },
   {
     "title": "[일자리+센터] 6월 2주차 이공계인력중개센터 채용 정보",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370273&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370273&article.offset=20&articleLimit=10",
     "date": "2026-06-12",
     "is_pinned": false
   },
@@ -217,31 +253,31 @@
   },
   {
     "title": "[RISE사업단+사회봉사센터] 2026 우만1동 우만이·우순이와 함께하는 ‘사랑의 찬찬찬’ 나눔 봉사 프로그램 참가자 모집!(선착순 마감)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370250&article.offset=20&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370250&article.offset=30&articleLimit=10",
     "date": "2026-06-12",
     "is_pinned": false
   },
   {
     "title": "[RISE] 2026 제7회 대학연합창업캠프 「경기실록지리지」 참가자 모집 (~6/19)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370247&article.offset=20&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370247&article.offset=30&articleLimit=10",
     "date": "2026-06-12",
     "is_pinned": false
   },
   {
     "title": "[일자리+센터] 🌭다음 주 화요일, 핫도그 받을 사람?🙋‍♂️(기말응원 EVENT)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370245&article.offset=20&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370245&article.offset=30&articleLimit=10",
     "date": "2026-06-12",
     "is_pinned": false
   },
   {
     "title": "[학생지원팀]2026 아주대학교 응원가, 응원구호 공모전 수상작 발표",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370228&article.offset=20&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370228&article.offset=30&articleLimit=10",
     "date": "2026-06-12",
     "is_pinned": false
   },
   {
     "title": "[총무팀] 기숙사식당 1층식당 기말고사 아이스크림 제공 이벤트 안내(6.16. 화)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370225&article.offset=20&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370225&article.offset=30&articleLimit=10",
     "date": "2026-06-12",
     "is_pinned": false
   },
@@ -254,12 +290,6 @@
   {
     "title": "[정보시스템팀] 내부 네트워크 장애 복구 완료 안내",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370202&article.offset=30&articleLimit=10",
-    "date": "2026-06-11",
-    "is_pinned": false
-  },
-  {
-    "title": "[학부/학사과정] 2026학년도 하계 계절수업 추가 등록 일정 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370188&article.offset=30&articleLimit=10",
     "date": "2026-06-11",
     "is_pinned": false
   },
@@ -283,25 +313,25 @@
   },
   {
     "title": "[미래자동차]국민대 2026-하계 현대 NGV CAMPUS 온라인 교육과정 신청 안내(~6/24)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370172&article.offset=30&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370172&article.offset=40&articleLimit=10",
     "date": "2026-06-11",
     "is_pinned": false
   },
   {
     "title": "[학습법] 2026-1학기 온라인 학습법 특강 안내(시험 전략 콘텐츠 업로드)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370171&article.offset=30&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370171&article.offset=40&articleLimit=10",
     "date": "2026-06-11",
     "is_pinned": false
   },
   {
     "title": "[일자리+센터] ⏰단 2박 3일만에 \"이공계 졸업생 취준\" 완벽하게 끝내자! <AJOU '26 취업 올 클리어 캠프>",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370163&article.offset=30&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370163&article.offset=40&articleLimit=10",
     "date": "2026-06-11",
     "is_pinned": false
   },
   {
     "title": "[아주대학교 축구부⚽] U리그 홈 경기 안내 (2026.06.12.(금))",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370161&article.offset=30&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370161&article.offset=40&articleLimit=10",
     "date": "2026-06-11",
     "is_pinned": false
   },
@@ -343,25 +373,61 @@
   },
   {
     "title": "(홍보) 수원특례시 자치분권 청년 기획단 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370129&article.offset=40&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370129&article.offset=50&articleLimit=10",
     "date": "2026-06-10",
     "is_pinned": false
   },
   {
     "title": "[홍보] 2026 중국 국제대학생 혁신대회 참가 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370111&article.offset=40&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370111&article.offset=50&articleLimit=10",
     "date": "2026-06-10",
     "is_pinned": false
   },
   {
     "title": "(당일재공지) [RISE] 지산학교육 성과를 한눈에! AJOU SURP-RISE Edu Festa 개최(Feat. 김성민커피)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370084&article.offset=40&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370084&article.offset=50&articleLimit=10",
     "date": "2026-06-10",
     "is_pinned": false
   },
   {
     "title": "[학부/학사과정] (26.06.09.) 2026-하계 계절학기 국내대학 학점교류 신청 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370078&article.offset=40&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370078&article.offset=50&articleLimit=10",
+    "date": "2026-06-09",
+    "is_pinned": false
+  },
+  {
+    "title": "[미래자동차]계명대 2026 하계 미래자동차 컨소시엄 협력교육 참가 신청 안내(~6/16)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370068&article.offset=50&articleLimit=10",
+    "date": "2026-06-09",
+    "is_pinned": false
+  },
+  {
+    "title": "🚀NIPA-AWS AI 보안 전문가의 시작, AWS AI Security 부트캠프 모집!",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370062&article.offset=50&articleLimit=10",
+    "date": "2026-06-09",
+    "is_pinned": false
+  },
+  {
+    "title": "[교외장학] AI·네트워크 응용분야 개발 공모전 넷 챌린지 캠프 시즌 13 모집",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370059&article.offset=50&articleLimit=10",
+    "date": "2026-06-09",
+    "is_pinned": false
+  },
+  {
+    "title": "🧐친구들의 이야기가 궁금해! U-Chance FAIR 참여후기 공모전 수상작품 공개👀",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370054&article.offset=50&articleLimit=10",
+    "date": "2026-06-09",
+    "is_pinned": false
+  },
+  {
+    "title": "(이벤트 진행중 성호관!!!)🍀제 23회 강의페어링 전시회 안내(이벤트 참여 시, ☕쿠폰 드려요!)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370053&article.offset=50&articleLimit=10",
+    "date": "2026-06-09",
+    "is_pinned": false
+  },
+  {
+    "title": "[AI융합교육원]제5회 대학 연합 아주 소중한 딥러닝 챌린지 참가 신청 안내(학부생 대상)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370031&article.offset=50&articleLimit=10",
     "date": "2026-06-09",
     "is_pinned": false
   }
