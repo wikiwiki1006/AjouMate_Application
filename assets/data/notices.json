@@ -6,12 +6,6 @@
     "is_pinned": true
   },
   {
-    "title": "2026-2학기 생활관(기숙사) 연속사생 신청 안내 (1학기 입사생 대상)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370856&article.offset=0&articleLimit=10",
-    "date": "2026-06-24",
-    "is_pinned": true
-  },
-  {
     "title": "[총무팀] [정기주차권] 2026학년도 2학기 정기주차권 신청 사전 안내",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=370705&article.offset=0&articleLimit=10",
     "date": "2026-06-22",
@@ -64,6 +58,12 @@
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=324578&article.offset=0&articleLimit=10",
     "date": "2024-08-21",
     "is_pinned": true
+  },
+  {
+    "title": "[일자리+센터] KT에이블스쿨 10기 모집 설명회 안내(재공지)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=371569&article.offset=0&articleLimit=10",
+    "date": "2026-07-05",
+    "is_pinned": false
   },
   {
     "title": "[앵커] (교원) 2026-2 캡스톤디자인/Dynamic-PBL 기업(기관) 연계 프로젝트 수요조사 안내(~7/20)",
@@ -121,7 +121,7 @@
   },
   {
     "title": "[다산학부대학]2026학년도 4개학과 신입생 대상 BSM 희망교과목 신청 안내 (산업공학과, 환경안전공학과, 미래모빌리티공학과, 소프트웨어학과)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=371348&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=371348&article.offset=10&articleLimit=10",
     "date": "2026-07-03",
     "is_pinned": false
   },
@@ -181,7 +181,7 @@
   },
   {
     "title": "[메이커스페이스] 3D프린터운용기능사 국가자격증 취득과정 교육생 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=371297&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=371297&article.offset=20&articleLimit=10",
     "date": "2026-07-02",
     "is_pinned": false
   },
@@ -241,7 +241,7 @@
   },
   {
     "title": "[일자리+센터] 이달의 추천채용_2026년 7월",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=371239&article.offset=20&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=371239&article.offset=30&articleLimit=10",
     "date": "2026-07-01",
     "is_pinned": false
   },
@@ -296,12 +296,6 @@
   {
     "title": "[학자금대출]2026학년도 2학기 AI학업장려 학자금대출 신청 안내",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=371181&article.offset=30&articleLimit=10",
-    "date": "2026-06-30",
-    "is_pinned": false
-  },
-  {
-    "title": "[학자금대출] 2026학년도 2학기 농촌출신대학생 학자금대출 신청 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=371174&article.offset=30&articleLimit=10",
     "date": "2026-06-30",
     "is_pinned": false
   }
