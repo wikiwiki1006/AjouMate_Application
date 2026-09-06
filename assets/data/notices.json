@@ -60,6 +60,12 @@
     "is_pinned": true
   },
   {
+    "title": "[창업지원단] 아주대학교 모두의창업 2차 사업설명회 개최",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=375117&article.offset=0&articleLimit=10",
+    "date": "2026-09-06",
+    "is_pinned": false
+  },
+  {
     "title": "[일자리+센터] 2026학년도 AJOU 3색 나침반 브런치 특강",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=375112&article.offset=0&articleLimit=10",
     "date": "2026-09-05",
@@ -115,7 +121,7 @@
   },
   {
     "title": "[수원시청소년청년재단] 제7회 수원시 청년의 날 기념행사 부스 운영 봉사자 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=375061&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=375061&article.offset=10&articleLimit=10",
     "date": "2026-09-04",
     "is_pinned": false
   },
@@ -175,7 +181,7 @@
   },
   {
     "title": "[일자리+센터] [오늘 신청마감]✨A.C.E. STUDY(26-1기)✨🧑‍💼현직자와 함께 스터디 할 사람✍️",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=375019&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=375019&article.offset=20&articleLimit=10",
     "date": "2026-09-04",
     "is_pinned": false
   },
@@ -235,7 +241,7 @@
   },
   {
     "title": "[법학전문대학원] 입시 업무 보조 면학장학생 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374964&article.offset=20&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374964&article.offset=30&articleLimit=10",
     "date": "2026-09-03",
     "is_pinned": false
   },
@@ -295,7 +301,7 @@
   },
   {
     "title": "[창업지원단] 아주대학교 모두의창업 2차 모집 공고",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374891&article.offset=30&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374891&article.offset=40&articleLimit=10",
     "date": "2026-09-02",
     "is_pinned": false
   },
@@ -355,8 +361,62 @@
   },
   {
     "title": "[수원특례시, 경기도수원교육지원청] 환경분야 멘토와 만나는, 「수원 에코잡데이」 참여 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374849&article.offset=40&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374849&article.offset=50&articleLimit=10",
     "date": "2026-09-02",
+    "is_pinned": false
+  },
+  {
+    "title": "[현장실습지원센터] 율곡관 혁신공유라운지 사용 불가 안내 (★9.3.(목) 15:00 ~ 18:00)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374844&article.offset=50&articleLimit=10",
+    "date": "2026-09-02",
+    "is_pinned": false
+  },
+  {
+    "title": "개강 뿌셔 💥 왁뿌볼 뿌셔 💥",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374837&article.offset=50&articleLimit=10",
+    "date": "2026-09-02",
+    "is_pinned": false
+  },
+  {
+    "title": "[교외장학] 2026년 월정김용복장학·월정생활비장학금 모집 공고",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374827&article.offset=50&articleLimit=10",
+    "date": "2026-09-02",
+    "is_pinned": false
+  },
+  {
+    "title": "[학습법] 2026ver. AI 이렇게 안쓰면 손해, 하네스 엔지니어링(오늘 신청 마감)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374823&article.offset=50&articleLimit=10",
+    "date": "2026-09-02",
+    "is_pinned": false
+  },
+  {
+    "title": "🧡아주대와 함께하는 문화산책(9월)🧡",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374819&article.offset=50&articleLimit=10",
+    "date": "2026-09-02",
+    "is_pinned": false
+  },
+  {
+    "title": "[글로벌교양학부] 26.2학기 <아주인을 위한 마중물> 동아리 소개 모집",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374801&article.offset=50&articleLimit=10",
+    "date": "2026-09-02",
+    "is_pinned": false
+  },
+  {
+    "title": "[일자리+센터]생성형 AI를 활용한 실전 취업준비 ABC과정 안내 (모집연장)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374794&article.offset=50&articleLimit=10",
+    "date": "2026-09-01",
+    "is_pinned": false
+  },
+  {
+    "title": "[창업교육센터] 2026학년도 창업동아리 모집 안내(~9/18(금)까지)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374793&article.offset=50&articleLimit=10",
+    "date": "2026-09-01",
+    "is_pinned": false
+  },
+  {
+    "title": "[★재공지] 2026학년도 독감예방접종 시행 안내 (Flu Vaccination Schedule and Information)",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=374790&article.offset=50&articleLimit=10",
+    "date": "2026-09-01",
     "is_pinned": false
   }
 ]
