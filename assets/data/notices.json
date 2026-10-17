@@ -24,6 +24,12 @@
     "is_pinned": true
   },
   {
+    "title": "[일자리+센터] 컨설턴트 10인10색 브런치 특강 안내",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377594&article.offset=0&articleLimit=10",
+    "date": "2026-10-17",
+    "is_pinned": false
+  },
+  {
     "title": "[일자리+센터][기업탐방]에드워드코리아_아산공장 견학(아트라스콥코 그룹사) (11/17)",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377590&article.offset=0&articleLimit=10",
     "date": "2026-10-16",
@@ -79,7 +85,7 @@
   },
   {
     "title": "[재공지][국제교류팀] 2026 국제겨울학교(AIWS) 버디(Buddy)학생 모집 공고",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377545&article.offset=0&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377545&article.offset=10&articleLimit=10",
     "date": "2026-10-15",
     "is_pinned": false
   },
@@ -139,7 +145,7 @@
   },
   {
     "title": "[해외봉사] 2026년 하반기 KOICA 해외봉사단 정기설명회 참여 신청 안내",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377482&article.offset=10&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377482&article.offset=20&articleLimit=10",
     "date": "2026-10-14",
     "is_pinned": false
   },
@@ -199,7 +205,7 @@
   },
   {
     "title": "[총동문회] 선배가 쏜다! 중간고사 간식 이벤트 (10/15)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377443&article.offset=20&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377443&article.offset=30&articleLimit=10",
     "date": "2026-10-13",
     "is_pinned": false
   },
@@ -259,7 +265,7 @@
   },
   {
     "title": "[홍보] 이데일리 아이디어 유니버시아드 대회 개최",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377384&article.offset=30&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377384&article.offset=40&articleLimit=10",
     "date": "2026-10-12",
     "is_pinned": false
   },
@@ -319,7 +325,7 @@
   },
   {
     "title": "[홍보] 수원시 도시정책 시민계획단 모집",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377323&article.offset=40&articleLimit=10",
+    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377323&article.offset=50&articleLimit=10",
     "date": "2026-10-12",
     "is_pinned": false
   },
@@ -375,12 +381,6 @@
     "title": "[Remind]  2026학년도 2학기 🍚스타셰프의 레시피로 전하는 총장님의 A+ 응원🍚 (26.10.14)",
     "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377281&article.offset=50&articleLimit=10",
     "date": "2026-10-09",
-    "is_pinned": false
-  },
-  {
-    "title": "[재공지] [국제교류팀] [동계 2차] 2026 해외단기파견 프로그램 참가자 모집 (10/7~10/12)",
-    "link": "https://www.ajou.ac.kr/kr/ajou/notice.do?mode=view&articleNo=377272&article.offset=50&articleLimit=10",
-    "date": "2026-10-08",
     "is_pinned": false
   }
 ]
